@@ -1,0 +1,17 @@
+[package]
+name = "fatbinspect"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+libc = "0.2"
+object = "0.40"
+bytemuck = { version = "1.25", features = ["derive"] }
+rustyline = "18.0"
+lz4_flex = { version = "0.14", default-features = false, features = ["safe-decode", "checked-decode", "std"] }
+ruzstd = { version = "0.9", optional = true }
+
+[features]
+# Zstd-compressed fatbin entries (flag 0x8000, CUDA 12.8+/13).
+zstd = ["dep:ruzstd"]
